@@ -22,11 +22,8 @@ if (body?.data?.nsmxList) {
   body.data.ybtseHj = Number(ybtseSum.toFixed(2));
 
   // 调试日志
-  $notify(
-    "etax 脚本运行成功",
-    `原始 ${beforeCount} 条，过滤后 ${filteredList.length} 条`,
-    `合计税前收入: ${body.data.sreHj}，应补退税额: ${body.data.ybtseHj}`
-  );
+  console.log(`etax 脚本运行成功，原始 ${beforeCount} 条，过滤后 ${filteredList.length} 条，合计税前收入: ${body.data.sreHj}，应补退税额: ${body.data.ybtseHj}`);
+
 } else {
   $notify("etax 错误", "", "未找到 data.nsmxList");
 }
