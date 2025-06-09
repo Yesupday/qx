@@ -20,7 +20,7 @@ try {
     let resultlist = obj.data.list;
     let oldcount = resultlist.length;
 
-    while ((obj.data?.total || 0) === 20) {
+    while (obj.datatotal === 20) {
         (async () => {
             try {
                 const headers = { ...$request.headers };
@@ -43,7 +43,7 @@ try {
                 else {
                     bodyObject["planStartTime"] = resultlist[-1].planStartTime;
                 }
-                
+
                 if (!("X-Bypass" in headers)) {
                     headers["X-Bypass"] = "1";
                 }
