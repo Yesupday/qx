@@ -17,7 +17,7 @@ try {
     obj.data.list = obj.data.list.filter(item => item.orderStatus === 60);
   }
   obj.data.total = oldcount < 20 ? obj.data.list.length : 20;
-  console.log(`哈啰历史订单原${oldcount}条,过滤后剩余${obj.data.total}条`);
+  console.log(`哈啰历史订单原${oldcount}条,过滤后剩余${obj.data.list.length}条`);
 
   $done({ body: JSON.stringify(obj) });
 } catch (e) {
