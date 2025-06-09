@@ -33,8 +33,10 @@ let body = $response.body;
                 return;
             }
         }
+        let num = 1;
 
         while (obj.data.total === 20) {
+            console.log(`准备翻到第${++num}页`);
             bodyObject.planStartTime = resultlist[resultlist.length - 1]?.planStartTime;
 
             const requestInfo = {
