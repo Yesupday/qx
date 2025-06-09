@@ -45,12 +45,23 @@ let body = $response.body;
                 headers,
                 body: JSON.stringify(bodyObject)
             };
-
+            
             try {
                 const response = await $task.fetch(requestInfo);
-                obj = JSON.parse(response.body); 
-                const nextList = obj.data.list || [];
 
+                if (!response?.body) {
+                    console.log("❗ 响应为空 response.body =", response.body);
+                    break;
+                }
+
+                obj = JSON.parse(response.body);
+
+                if (!obj?.data?.list) {
+                    console.log("❗ obj.data.list 不存在，obj =", JSON.stringify(obj));
+                    break;
+                }
+
+                const nextList = obj.data.list;
                 if (nextList.length === 0) break;
 
                 resultlist = resultlist.concat(nextList);
@@ -58,6 +69,7 @@ let body = $response.body;
                 console.log(`❌ 哈哈翻页请求失败: ${e.message}`);
                 break;
             }
+
 
         }
 
