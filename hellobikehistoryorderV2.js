@@ -37,12 +37,8 @@ try {
                 }
 
                 // ✅ 设置或覆盖 planStartTime
-                if (!("planStartTime" in bodyObject)) {
-                    bodyObject.planStartTime = resultlist[-1].planStartTime;
-                }
-                else {
-                    bodyObject["planStartTime"] = resultlist[-1].planStartTime;
-                }
+                bodyObject.planStartTime = resultlist[resultlist.length - 1].planStartTime;
+
 
                 if (!("X-Bypass" in headers)) {
                     headers["X-Bypass"] = "1";
