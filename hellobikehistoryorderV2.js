@@ -48,6 +48,11 @@ let body = $response.body;
                 headers,
                 body: JSON.stringify(bodyObject)
             };
+            console.log("method:", requestInfo.method);
+            console.log("url:", requestInfo.url);
+            console.log("body length:", requestInfo.body.length);
+            console.log("headers keys:", Object.keys(requestInfo.headers));
+
             console.log("❌哈哈requestInfo =", JSON.stringify(requestInfo, null, 2));
 
             try {
