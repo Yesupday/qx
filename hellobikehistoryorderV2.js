@@ -29,12 +29,12 @@ let body = $response.body;
             }
         }
         
-        if (bodyObject.releaseVersion === "6.88.8") {
-            console.log("⏭️ 哈哈 跳过自身请求");
-            $done({});
-            return;
-        }
-        bodyObject.releaseVersion = "6.88.8";// 避免重复请求自己
+        // if (bodyObject.releaseVersion === "6.88.8") {
+        //     console.log("⏭️ 哈哈 跳过自身请求");
+        //     $done({});
+        //     return;
+        // }
+        // bodyObject.releaseVersion = "6.88.8";// 避免重复请求自己
         let num = 1;
 
         while (num <= 5) {
