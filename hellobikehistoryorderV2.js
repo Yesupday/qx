@@ -1,7 +1,7 @@
 // 支付宝哈啰历史订单列表重写
 // [rewrite_local]
 
-// ^https:\/\/taxiapi\.hellobike\.com\/api\?hitch\.driver\.getHistoryJourneyList url script-response-body hellobikehistoryorderV2.js.js
+// ^https:\/\/taxiapi\.hellobike\.com\/api\?hitch\.driver\.getHistoryJourneyList url script-response-body hellobikehistoryorderV2.js
 // [mitm]
 
 // hostname = taxiapi.hellobike.com
@@ -12,64 +12,61 @@ if ($request?.headers["X-Bypass"] === "1") {
     return;
 }
 
-
 let body = $response.body;
 
-try {
-    let obj = JSON.parse(body);
-    let resultlist = obj.data.list;
-    let oldcount = resultlist.length;
+(async () => {
+    try {
+        let obj = JSON.parse(body);
+        let resultlist = obj.data.list || [];
+        let oldcount = resultlist.length;
 
-    while (obj.data.total === 20) {
-        (async () => {
+        let headers = { ...$request.headers };
+        headers["X-Bypass"] = "1"; // 避免重复请求自己
+
+        let bodyObject = {};
+        if ($request.body) {
             try {
-                const headers = { ...$request.headers };
-
-                let bodyObject = {};
-                if ($request.body) {
-                    try {
-                        bodyObject = JSON.parse($request.body);
-                    } catch (e) {
-                        console.log("❌ 请求体不是 JSON，跳过处理");
-                        $done({});
-                        return;
-                    }
-                }
-
-                // ✅ 设置或覆盖 planStartTime
-                bodyObject.planStartTime = resultlist[resultlist.length - 1].planStartTime;
-
-
-                if (!("X-Bypass" in headers)) {
-                    headers["X-Bypass"] = "1";
-                }
-
-                const requestInfo = {
-                    method: $request.method,
-                    url: $request.url,
-                    headers,
-                    body: JSON.stringify(bodyObject)
-                };
-
-
-                const response = await $task.fetch(requestInfo);
-                let obj2 = JSON.parse(response)
-                resultlist = resultlist.concat(obj2.data.list)
+                bodyObject = JSON.parse($request.body);
             } catch (e) {
-                console.log(`❌ 哈罗错误:${e.message}`);
-                $done();
+                console.log("❌ 请求体不是 JSON，跳过处理");
+                $done({});
+                return;
             }
-        })();
+        }
 
+        while (obj.data.total === 20) {
+            bodyObject.planStartTime = resultlist[resultlist.length - 1]?.planStartTime;
 
+            const requestInfo = {
+                method: $request.method,
+                url: $request.url,
+                headers,
+                body: JSON.stringify(bodyObject)
+            };
+
+            try {
+                const response = await $task.fetch(requestInfo);
+                obj = JSON.parse(response);
+                const nextList = obj.data.list || [];
+
+                if (nextList.length === 0) break;
+
+                resultlist = resultlist.concat(nextList);
+            } catch (e) {
+                console.log(`❌ 翻页请求失败: ${e.message}`);
+                break;
+            }
+        }
+
+        const filtered = resultlist.filter(item => item.orderStatus === 60);
+        obj.data.list = filtered;
+        obj.data.total = filtered.length;
+
+        console.log(`✅ 哈啰历史订单原 ${oldcount} 条，过滤后剩余 ${filtered.length} 条`);
+        $done({ body: JSON.stringify(obj) });
+
+    } catch (e) {
+        console.log("🚫 过滤订单状态失败：", e);
+        $done({ body }); // 返回原始数据
     }
-
-    obj.data.list = resultlist.filter(item => item.orderStatus === 60);
-    obj.data.tatol = resultlist.length;
-    console.log(`哈啰历史订单原${oldcount}条,过滤后剩余${obj.data.list.length}条`);
-
-    $done({ body: JSON.stringify(obj) });
-} catch (e) {
-    console.log("🚫 过滤订单状态失败：", e);
-    $done({ body }); // 保持原始内容不变
-}
+})();
