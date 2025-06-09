@@ -58,9 +58,9 @@ try {
 
                 const response = await $task.fetch(requestInfo);
                 let obj2 = JSON.parse(response)
-                resultlist.push(...obj2.data.list)
+                resultlist = resultlist.concat(obj2.data.list)
             } catch (e) {
-                console.log("❌ 错误:", e);
+                console.log(`❌ 哈罗错误:${e.message}`);
                 $done();
             }
         })();
