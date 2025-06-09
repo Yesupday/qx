@@ -10,7 +10,7 @@
 let body = $response.body;
 
 try {
-  let obj = JSON.parse(body);
+    let obj = JSON.parse(body);
   
   let oldcount = obj.data?.total || 0;
   if (obj?.data?.list && Array.isArray(obj.data.list)) {
