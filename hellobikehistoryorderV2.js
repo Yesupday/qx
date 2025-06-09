@@ -6,11 +6,7 @@
 
 // hostname = taxiapi.hellobike.com
 
-if ($request?.headers["X-Bypass"] === "1") {
-    console.log("⏭️ 哈哈 跳过自身请求");
-    $done({});
-    return;
-}
+
 
 let body = $response.body;
 
@@ -21,8 +17,7 @@ let body = $response.body;
         let oldcount = resultlist.length;
 
         let headers = { ...$request.headers };
-        headers["X-Bypass"] = "1"; // 避免重复请求自己
-
+        
         let bodyObject = {};
         if ($request.body) {
             try {
@@ -33,9 +28,17 @@ let body = $response.body;
                 return;
             }
         }
+        
+        if (bodyObject.releaseVersion === "6.88.8") {
+            console.log("⏭️ 哈哈 跳过自身请求");
+            $done({});
+            return;
+        }
+        bodyObject.releaseVersion = "6.88.8";// 避免重复请求自己
         let num = 1;
 
-        while (obj.data.total === 20) {
+        while (num <= 5) {
+            // while (obj.data.total === 20) {
             bodyObject.planStartTime = resultlist[resultlist.length - 1]?.planStartTime;
             console.log(`哈哈准备翻到第${++num}页,时间戳为${bodyObject.planStartTime}`);
 
