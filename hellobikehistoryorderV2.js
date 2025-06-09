@@ -58,7 +58,7 @@ try {
 
                 const response = await $task.fetch(requestInfo);
                 let obj2 = JSON.parse(response)
-                resultlist.push(obj2.data.list)
+                resultlist.push(...obj2.data.list)
             } catch (e) {
                 console.log("❌ 错误:", e);
                 $done();
