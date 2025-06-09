@@ -12,11 +12,12 @@ let body = $response.body;
 try {
   let obj = JSON.parse(body);
   
+  let oldcount = obj.data?.total || 0;
   if (obj?.data?.list && Array.isArray(obj.data.list)) {
     obj.data.list = obj.data.list.filter(item => item.orderStatus === 60);
-    obj.data.total = obj.data.list.length;
   }
-  console.log(`哈啰历史过滤订单后剩余${obj.data.total}条`);
+  obj.data.total = oldcount < 20 ? obj.data.list.length : 20;
+  console.log(`哈啰历史订单原${oldcount}条,过滤后剩余${obj.data.total}条`);
 
   $done({ body: JSON.stringify(obj) });
 } catch (e) {
