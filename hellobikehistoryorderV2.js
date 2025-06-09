@@ -74,9 +74,9 @@ let body = $response.body;
         }
 
         const filtered = resultlist.filter(item => item.orderStatus === 60);
-        console.log(`哈哈1${filtered}`)
-        obj.data.list = JSON.stringify(filtered);
+        console.log(`哈哈1${JSON.stringify(filtered)}`)
         console.log(`哈哈2${obj.data.list}`)
+        obj.data.list = JSON.stringify(filtered);
         obj.data.total = filtered.length;
         console.log("哈哈3")
 
