@@ -45,7 +45,7 @@ let body = $response.body;
                 headers,
                 body: JSON.stringify(bodyObject)
             };
-            
+
             try {
                 const response = await $task.fetch(requestInfo);
 
@@ -81,7 +81,7 @@ let body = $response.body;
         $done({ body: JSON.stringify(obj) });
 
     } catch (e) {
-        console.log("🚫 哈哈过滤订单状态失败：", e);
+        console.log("🚫 哈哈过滤订单状态失败：", e.message);
         $done({ body }); // 返回原始数据
     }
 })();
