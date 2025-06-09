@@ -74,9 +74,9 @@ let body = $response.body;
         }
 
         const filtered = resultlist.filter(item => item.orderStatus === 60);
-        console.log("哈哈1")
+        console.log(`哈哈1${filtered}`)
+        console.log(`哈哈2${obj.data.list}`)
         obj.data.list = filtered;
-        console.log("哈哈2")
         obj.data.total = filtered.length;
         console.log("哈哈3")
 
@@ -84,7 +84,7 @@ let body = $response.body;
         $done({ body: JSON.stringify(obj) });
 
     } catch (e) {
-        console.log("🚫 哈哈过滤订单状态失败：", e.message);
+        console.log("🚫 哈哈过滤订单状态失败：", e.name);
         $done({ body }); // 返回原始数据
     }
 })();
