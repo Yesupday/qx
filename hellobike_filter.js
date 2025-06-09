@@ -16,6 +16,8 @@ try {
   if (obj?.data?.list && Array.isArray(obj.data.list)) {
     obj.data.list = obj.data.list.filter(item => item.orderStatus === 60);
   }
+  //递归判断如果列表的数量小于20，再次发出相同的请求，并将得到的list进行一个合并
+  
   console.log(`哈啰历史订单原${oldcount}条,过滤后剩余${obj.data.list.length}条`);
 
   $done({ body: JSON.stringify(obj) });
