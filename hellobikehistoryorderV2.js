@@ -17,7 +17,7 @@ let body = $response.body;
         let oldcount = resultlist.length;
 
         let headers = { ...$request.headers };
-        
+
         let bodyObject = {};
         if ($request.body) {
             try {
@@ -28,7 +28,7 @@ let body = $response.body;
                 return;
             }
         }
-        
+
         // if (bodyObject.releaseVersion === "6.88.8") {
         //     console.log("⏭️ 哈哈 跳过自身请求");
         //     $done({});
@@ -48,6 +48,7 @@ let body = $response.body;
                 headers,
                 body: JSON.stringify(bodyObject)
             };
+            console.log("❌哈哈requestInfo =", JSON.stringify(requestInfo, null, 2));
 
             try {
                 const response = await $task.fetch(requestInfo);
@@ -77,8 +78,8 @@ let body = $response.body;
         }
 
         const filtered = resultlist.filter(item => item.orderStatus === 60);
-        console.log(`哈哈1${JSON.stringify(filtered)}`)
-        console.log(`哈哈2${obj.data.list}`)
+        // console.log(`哈哈1${JSON.stringify(filtered)}`)
+        // console.log(`哈哈2${obj.data.list}`)
         obj.data.list = JSON.stringify(filtered);
         obj.data.total = filtered.length;
         console.log("哈哈3")
