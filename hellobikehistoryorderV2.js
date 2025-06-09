@@ -74,8 +74,11 @@ let body = $response.body;
         }
 
         const filtered = resultlist.filter(item => item.orderStatus === 60);
+        console.log("哈哈1")
         obj.data.list = filtered;
+        console.log("哈哈2")
         obj.data.total = filtered.length;
+        console.log("哈哈3")
 
         console.log(`✅ 哈哈历史订单原 ${oldcount} 条，过滤后剩余 ${filtered.length} 条`);
         $done({ body: JSON.stringify(obj) });
