@@ -20,7 +20,7 @@ try {
     let resultlist = obj.data.list;
     let oldcount = resultlist.length;
 
-    while (obj.datatotal === 20) {
+    while (obj.data.total === 20) {
         (async () => {
             try {
                 const headers = { ...$request.headers };
