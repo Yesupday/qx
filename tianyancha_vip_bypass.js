@@ -1,5 +1,10 @@
 // ^https:\/\/.*\.tianyancha\.com\/.* url script-response-body tianyancha_vip_bypass.js
 
+if (!$response.headers['Content-Type']?.includes('application/json')) {
+  console.log("⛔ 天眼查非 JSON 响应，跳过处理");
+  $done({});
+  return;
+}
 
 let body = $response.body;
 
