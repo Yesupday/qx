@@ -69,6 +69,7 @@ try {
     }
 
     obj.data.list = resultlist.filter(item => item.orderStatus === 60);
+    obj.data.tatol = resultlist.length;
     console.log(`哈啰历史订单原${oldcount}条,过滤后剩余${obj.data.list.length}条`);
 
     $done({ body: JSON.stringify(obj) });
