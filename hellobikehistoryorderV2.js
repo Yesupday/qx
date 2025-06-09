@@ -7,7 +7,7 @@
 // hostname = taxiapi.hellobike.com
 
 if ($request?.headers["X-Bypass"] === "1") {
-    console.log("⏭️ 跳过自身请求");
+    console.log("⏭️ 哈哈 跳过自身请求");
     $done({});
     return;
 }
@@ -28,7 +28,7 @@ let body = $response.body;
             try {
                 bodyObject = JSON.parse($request.body);
             } catch (e) {
-                console.log("❌ 请求体不是 JSON，跳过处理");
+                console.log("❌ 哈哈 请求体不是 JSON，跳过处理");
                 $done({});
                 return;
             }
@@ -36,7 +36,7 @@ let body = $response.body;
         let num = 1;
 
         while (obj.data.total === 20) {
-            console.log(`准备翻到第${++num}页`);
+            console.log(`哈哈准备翻到第${++num}页`);
             bodyObject.planStartTime = resultlist[resultlist.length - 1]?.planStartTime;
 
             const requestInfo = {
@@ -55,7 +55,7 @@ let body = $response.body;
 
                 resultlist = resultlist.concat(nextList);
             } catch (e) {
-                console.log(`❌ 翻页请求失败: ${e.message}`);
+                console.log(`❌ 哈哈翻页请求失败: ${e.message}`);
                 break;
             }
         }
@@ -64,11 +64,11 @@ let body = $response.body;
         obj.data.list = filtered;
         obj.data.total = filtered.length;
 
-        console.log(`✅ 哈啰历史订单原 ${oldcount} 条，过滤后剩余 ${filtered.length} 条`);
+        console.log(`✅ 哈哈历史订单原 ${oldcount} 条，过滤后剩余 ${filtered.length} 条`);
         $done({ body: JSON.stringify(obj) });
 
     } catch (e) {
-        console.log("🚫 过滤订单状态失败：", e);
+        console.log("🚫 哈哈过滤订单状态失败：", e);
         $done({ body }); // 返回原始数据
     }
 })();
