@@ -48,7 +48,7 @@ let body = $response.body;
 
             try {
                 const response = await $task.fetch(requestInfo);
-                obj = JSON.parse(response);
+                obj = JSON.parse(response.body); 
                 const nextList = obj.data.list || [];
 
                 if (nextList.length === 0) break;
@@ -58,6 +58,7 @@ let body = $response.body;
                 console.log(`❌ 哈哈翻页请求失败: ${e.message}`);
                 break;
             }
+
         }
 
         const filtered = resultlist.filter(item => item.orderStatus === 60);
