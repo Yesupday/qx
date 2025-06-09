@@ -13,7 +13,7 @@ try {
   let obj = JSON.parse(body);
   
   if (obj?.data?.list && Array.isArray(obj.data.list)) {
-    obj.data.list = obj.data.list.filter(item => item.orderStatus !== 60);
+    obj.data.list = obj.data.list.filter(item => item.orderStatus === 60);
     obj.data.total = obj.data.list.length;
   }
   console.log(`哈啰历史过滤订单后剩余${obj.data.total}条`);
