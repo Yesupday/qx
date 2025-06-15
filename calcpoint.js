@@ -53,6 +53,7 @@
   }
 
   let result = resultText + "\n💰 支付路径：\n" + payments.join("\n");
+  console.log(`${result}`)
 
   $notify("点数结算结果", "", result);
   $done();
