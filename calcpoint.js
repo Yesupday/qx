@@ -3,7 +3,7 @@
 (async () => {
   const defaultScore = 20;
   const multiplier = 2;
-  const names = ["A", "B", "C", "D"];
+  const names = ["东", "南", "西", "北"];
 
   let input = "-12 -17 81 28";
 
