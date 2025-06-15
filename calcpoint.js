@@ -5,11 +5,7 @@
   const multiplier = 2;
   const names = ["A", "B", "C", "D"];
 
-  let input = await $input.prompt({
-    title: "点数结算",
-    message: "请输入4人当前点数，逗号分隔（如：38,20,81,28）",
-    defaultText: "20,20,20,20"
-  });
+  let input = "38,20,81,28";
 
   if (!input) {
     $notify("输入取消", "", "");
@@ -17,7 +13,7 @@
     return;
   }
 
-  let scores = input.split(",").map(s => parseFloat(s.trim()));
+  let scores = input.split(" ").map(s => parseFloat(s.trim()));
   if (scores.length !== 4 || scores.some(isNaN)) {
     $notify("输入格式错误", "请确保是4个数字，用逗号分隔", "");
     $done();
