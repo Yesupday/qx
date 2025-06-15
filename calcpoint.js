@@ -5,7 +5,7 @@
   const multiplier = 2;
   const names = ["A", "B", "C", "D"];
 
-  let input = "38 20 81 28";
+  let input = "-12 -17 81 28";
 
   if (!input) {
     $notify("输入取消", "", "");
