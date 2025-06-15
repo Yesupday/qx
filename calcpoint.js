@@ -1,4 +1,5 @@
 // 脚本菜单运行脚本
+//0 0 1 1 * https://github.com/Yesupday/qx/raw/refs/heads/master/calcpoint.js
 (async () => {
   const defaultScore = 20;
   const multiplier = 2;
