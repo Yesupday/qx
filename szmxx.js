@@ -7,7 +7,7 @@
 let body = $response.body;
 
 try {
-const originalPattern = /return\s*carPlateTypeStr:\s'请选择',{[^}]+ticket:\s*''\s*};/s;
+  const originalPattern = /carPlateTypeStr:\s*'请选择',[\s\S]*?ticket:\s*''/;
 
   const replacement2 = `return {
     carPlateTypeStr: '蓝牌',
@@ -131,7 +131,7 @@ const originalPattern = /return\s*carPlateTypeStr:\s'请选择',{[^}]+ticket:\s*
   } else {
     console.log("⚠️ 深圳限行未找到 return 匹配块");
   }
-  
+
   const pattern = /car_number:\s*'',\s*cjh:\s*'',\s*phone:\s*'',\s*showKeyboard:\s*false,\s*plateTypePicker:\s*false,\s*plateTypeName:\s*'蓝牌',\s*plateType:\s*\['02'\],/;
 
   const replacement = `car_number: '粤KUE525',
