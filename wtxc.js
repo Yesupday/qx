@@ -11,6 +11,7 @@ let body = $response.body;
 try {
   // 替换 licensePlateNo: ''
   body = body.replace(/licensePlateNo:\s*''/, "licensePlateNo: '粤KUE525'");
+  body = body.replace(/illegalNo:\s*''/, "illegalNo: 'DR0002337471'");
   body = body.replace(/carPlateTypeStr:\s*'请选择'/, "carPlateTypeStr: '小型汽车'");
   body = body.replace(/carPlateSyncPicker:\s*false,/, "carPlateSyncPicker: true,");
 
