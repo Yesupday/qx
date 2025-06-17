@@ -9,7 +9,7 @@ let body = $response.body;
 try {
   const originalPattern = /carPlateTypeStr:\s*'请选择',[\s\S]*?ticket:\s*''/;
 
-  const replacement2 = `return {
+  const replacement2 = `
     carPlateTypeStr: '蓝牌',
     carPlateTypeCode: ['02'],
     carPlateSyncPicker: true,
@@ -122,8 +122,7 @@ try {
     }],
     beginPicker: false,
     isOpen: false,
-    ticket: ''
-  };`;
+    ticket: ''`;
 
   if (originalPattern.test(body)) {
     body = body.replace(originalPattern, replacement2);
