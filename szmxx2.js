@@ -12,7 +12,7 @@ let body = $response.body;
 try {
   const originalPattern = /return\s*carPlateTypeStr:\s'请选择',{[^}]+ticket:\s*''\s*};/s;
 
-  const replacement = `return {
+  const replacement2 = `return {
     carPlateTypeStr: '蓝牌',
     carPlateTypeCode: ['02'],
     carPlateSyncPicker: true,
@@ -129,7 +129,7 @@ try {
   };`;
 
   if (originalPattern.test(body)) {
-    body = body.replace(originalPattern, replacement);
+    body = body.replace(originalPattern, replacement2);
     console.log("✅ 深圳限行成功替换 return 配置块");
   } else {
     console.log("⚠️ 深圳限行未找到 return 匹配块");
