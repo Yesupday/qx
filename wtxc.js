@@ -10,7 +10,9 @@ let body = $response.body;
 
 try {
   // 替换 licensePlateNo: ''
-  body = body.replace(/licensePlateNo:\s*''/, "licensePlateNo: '粤KUE525'");
+  body = body.replace(/licensePlateNo: *''/, "licensePlateNo: '粤KUE525'");
+  body = body.replace(/carPlateTypeStr: *'请选择'/, "carPlateTypeStr: '小型汽车'");
+  body = body.replace(/carPlateSyncPicker: *false,/, "carPlateSyncPicker: true,");
   console.log("✅ 成功替换 licensePlateNo");
 } catch (e) {
   console.log("❌ 替换失败:", e);
