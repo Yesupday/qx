@@ -19,8 +19,9 @@ try {
     _this2.$vux.alert.show({
         title: 'qx调试提示',
         content: JSON.stringify(json, null, 2)
-    });
-}`);
+    });}
+    if (json.code === '0000') {
+    `);
   console.log("✅ 违停返回现场申报重写替换完成: licensePlateNo → 粤KUE525, carPlateTypeStr → 小型汽车, carPlateSyncPicker → true");
 
 } catch (e) {
