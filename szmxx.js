@@ -10,7 +10,7 @@ try {
   const pattern = /car_number:\s*'',\s*cjh:\s*'',\s*phone:\s*'',\s*showKeyboard:\s*false,\s*plateTypePicker:\s*false,\s*plateTypeName:\s*'蓝牌',\s*plateType:\s*\['02'\],/;
 
   const replacement = `car_number: '粤KUE525',
-      cjh: '',
+      cjh: '6057',
       phone: '13011111111',
       showKeyboard: true,
       plateTypePicker: true,
