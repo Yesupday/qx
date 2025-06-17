@@ -10,9 +10,9 @@ let body = $response.body;
 
 try {
   // 替换 licensePlateNo: ''
-  body = body.replace(/licensePlateNo: *''/, "licensePlateNo: '粤KUE525'");
-  body = body.replace(/carPlateTypeStr: *'请选择'/, "carPlateTypeStr: '小型汽车'");
-  body = body.replace(/carPlateSyncPicker: *false,/, "carPlateSyncPicker: true,");
+  body = body.replace(/licensePlateNo:\s*''/, "licensePlateNo: '粤KUE525'");
+  body = body.replace(/carPlateTypeStr:\s*'请选择'/, "carPlateTypeStr: '小型汽车'");
+  body = body.replace(/carPlateSyncPicker:\s*false,/, "carPlateSyncPicker: true,");
   console.log("✅ 违停返回现场申报重写替换完成: licensePlateNo → 粤KUE525, carPlateTypeStr → 小型汽车, carPlateSyncPicker → true");
 
 } catch (e) {
