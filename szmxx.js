@@ -1,6 +1,6 @@
 // 深圳限行免限行申请通行证重写
 // [rewrite_local]
-// ^https:\/\/gzh\.szjj\.sz\.gov\.cn\/h5\/static\/js\/.*\.js$ url script-response-body https://github.com/Yesupday/qx/raw/refs/heads/master/szmxx.js
+// ^https:\/\/gzh\.szjj\.sz\.gov\.cn\/h5\/static\/js\/34.*\.js$ url script-response-body https://github.com/Yesupday/qx/raw/refs/heads/master/szmxx.js
 // [mitm]
 // hostname = gzh.szjj.sz.gov.cn
 
