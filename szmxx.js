@@ -12,7 +12,7 @@ try {
   const replacement2 = `
     carPlateTypeStr: '蓝牌',
     carPlateTypeCode: ['02'],
-    carPlateSyncPicker: true,
+    carPlateSyncPicker: false,
     carPlateData: [{
       'name': '请选择',
       'value': ''
@@ -28,7 +28,7 @@ try {
     }],
     carTypeStr: '小型轿车',
     carTypeCode: ['K33'],
-    carTypeSyncPicker: true,
+    carTypeSyncPicker: fasle,
     carTypeData: [{
       'name': '请选择',
       'value': ''
@@ -76,7 +76,7 @@ try {
     licensePlateNo: '',
     cur_license_id: 'K31',
     cur_plate_id: '02',
-    car_number: '',
+    car_number: '粤KUE525',
     vehicleIdentifyNoLast4: '6057',
     mobilephone: '13011111111',
     illegalData: [],
@@ -136,8 +136,8 @@ try {
   const replacement = `car_number: '粤KUE525',
       cjh: '6057',
       phone: '13011111111',
-      showKeyboard: true,
-      plateTypePicker: true,
+      showKeyboard: false,
+      plateTypePicker: false,
       plateTypeName: '蓝牌',
       plateType: ['02'],`;
 
